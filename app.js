@@ -6,5 +6,5 @@ const routes = require('./routes');
 // Créer un serveur node.js
 const server = http.createServer(routes);
 
-// Démarre le process node.js sur le port 3000 et écouter sur les reqûtes en provenance de cette adresse (http://localhost:3000)
+// Démarrer le process node.js sur le port 3000 et écouter sur les reqûtes en provenance de cette adresse (http://localhost:3000)
 server.listen(3000);
