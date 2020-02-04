@@ -1,7 +1,11 @@
+// Importer et stocket le module fs dans la constante fs
 const fs = require('fs');
 
+// Stocket le chemin relatif du fichier users.json dans la constante _source
 const _source = './users.json';
+// Lire le contenu du fichier _source en mode synchrone (Non blocking code)
 const personsChunk = fs.readFileSync(_source);
+// Convertir le buffer retourner par la fonctione readFileSync en json (c'est le format désiré pour cet exercice)
 let persons = JSON.parse(Buffer.concat([personsChunk]).toString());
 
 const routesHandler = (req, res) => {
