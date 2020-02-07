@@ -13,9 +13,18 @@ const getUsers = (req, res, next) => {
     res.send(JSON.stringify(users));
 };
 
-// Convertir le buffer retrourné par la fonction readFileSyn et retoruner le résultat dans le format json
+// Sauvegarder un utilisateur
 const saveUser = (req, res, next) => {
-    fs.writeFileSync(_source, JSON.stringify(users.concat(req.body)))
+    console.log(req.body);
+    fs.writeFileSync(_source, JSON.stringify(users.concat(req.body)));
+    res.redirect('/users');
+};
+
+
+// Supprimer un utilisateur
+const saveUser = (req, res, next) => {
+    console.log(req.body);
+    fs.writeFileSync(_source, JSON.stringify(users.concat(req.body)));
     res.redirect('/users');
 };
 
