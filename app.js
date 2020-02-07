@@ -1,10 +1,20 @@
-// Importer le module http et le stocket dans la variable constante http
-const http = require('http');
-// Importation du module local routes permettant de naviguer les routes et traiter les requests 
+// Importation du module express
+const express = require('express');
+// Importation du module parser
+const parser = require('body-parser');
+// Init the express app
+const app = express();
+
 const routes = require('./routes');
 
-// Créer un serveur node.js
-const server = http.createServer(routes);
+// Middleware pour parser toutes les données du body après chaque http request
+app.use(parser.urlencoded());
 
-// Démarrer le process node.js sur le port 3000 et écouter sur les reqûtes en provenance de cette adresse (http://localhost:3000)
-server.listen(3000);
+routes.getForm('/users-form', app);
+
+routes.getUsers('/users', app);
+
+routes.saveUser('/users', app);
+
+// Ecouter sur le port 3000 => Par exemple, si on tape dans l'url http://localhost:3000 cela va décelencher l'envoie des requests à notre appli express
+app.listen(3000);
