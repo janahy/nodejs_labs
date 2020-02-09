@@ -5,6 +5,6 @@ const _sources = {
 };
 
 module.exports = {
-    _rfFileSync: (path) => Buffer.concat(fs.readFileSync(_sources[path])),
+    _rfFileSync: (path) => JSON.parse(Buffer.concat(Array(fs.readFileSync(_sources[path])))),
     _wfFileSync: (path, data) => fs.writeFileSync(_sources[path], JSON.stringify(data))
 };

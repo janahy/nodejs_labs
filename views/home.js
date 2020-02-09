@@ -23,38 +23,6 @@ const _doc = (body) => `<!Doctype html>
                     </body>
                 </html>`;
 
-const _dt = (users) => {
-    let tbody = '';
-    users.get().map( user => {
-            tbody += `<tr>
-                        <td>${user.name}</td>
-                        <td>${user.age}</td>
-                        <td>${user.profession}</td>
-                    </tr>`
-    });
-    return _doc(
-        `<table class="table">
-            <thead>
-                <tr>
-                    <th>Nom</th>
-                    <th>Age</th>
-                    <th>Profession</th>
-                </tr>
-            </thead>
-            <tbody>
-                ${tbody}
-            </tbody>
-        </table>`
-    )
-    ;
-}
-
 module.exports = {
-    renderForm: () => _doc(`<form action='/users' method='POST'>
-                        <input type='text' placeholder='name' name='name'>
-                        <input type='text' placeholder='age' name='age'>
-                        <input type='text' placeholder='profession' name='profession'>
-                        <button type='submit'>Sauvegarder</button>
-                    </form>`),
-    renderDt: (entries) => _dt(entries)
+    render: (body) => _doc(body)
 }

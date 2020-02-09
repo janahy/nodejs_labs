@@ -1,16 +1,22 @@
-// Importation du module parser
 const parser = require('body-parser');
-// Importation du module express
+const path = require('path');
 const express = require('express');
-// Init the express app
 const app = express();
-// Middleware init
+
+const users = require('./routes');
+const homeView = require('./views/home');
+
 app.use(parser.urlencoded({extended: false}));
-// Importer et initier le UserController
-const users = require('./routes/users');
-app.use(users);
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/users', users);
+
+app.get('/', (req, res, next) => {
+    res.send(homeView.render(`<h1>Bienvenu dans ce LAB Nodejs ayant pour objectif l'exploration de toutes les fonctionnalités de cette techno</h1>`));
+});
+
 app.use( (req, res, next) => {
-    res.status(404).send(`<h1>Oooops L'url "${req.url}" n'a pas été trouvée !`);
+    res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
 } );
-// Ecouter sur le port 3000 => Par exemple, si on tape dans l'url http://localhost:3000 cela va décelencher l'envoie des requests à notre appli express
+
 app.listen(3000);
